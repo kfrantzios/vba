@@ -1,0 +1,82 @@
+Sub epilogi()
+'
+' Macro1 Macro
+'
+
+'
+'Dim i As Integer
+'i = 1
+  For i = 2 To 35000
+    If Cells(i, 11).Value <> vbNullString Then
+       Range("k" & i, (Cells(i, ActiveSheet.Columns.Count).End(xlToLeft))).Select
+'opoy k h stili me ton deytero ar ydrom. Metraei to plithos twn stilwn kai epilegei
+
+       selcount = Selection.Count
+       Rows(i + 1 & ":" & selcount + i).Select
+       Selection.Insert 'Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+       Range("J" & i + 1).Select
+       Application.CutCopyMode = False
+       Range("k" & i, (Cells(i, ActiveSheet.Columns.Count).End(xlToLeft))).Select
+       Selection.Copy
+       Range("J" & i + 1).Select
+       Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+           False, Transpose:=True
+       Range("A" & i & ":I" & i).Select
+       Application.CutCopyMode = False
+       Selection.Copy
+
+       b = i + selcount
+'       MsgBox (b)
+       For j = (i + 1) To b
+          Range("A" & j).Select
+          ActiveSheet.Paste
+          Selection.Interior.Color = rgbRed
+          
+      Next j
+    End If
+    
+  Next i
+'    Range("A11:D11").Select
+'    Application.CutCopyMode = False
+'    Selection.Copy
+'    Range("A12").Select
+'    ActiveSheet.Paste
+'    Range("A13").Select
+'    ActiveSheet.Paste
+'    Range("A15").Select
+'    ActiveSheet.Paste
+'    Range("A14").Select
+'   ActiveSheet.Paste
+'    Range("F11:I11").Select
+'    Selection.Copy
+'    Rows("12:15").Select
+'    Application.CutCopyMode = False
+End Sub
+'Sub Macro2()
+'
+' Macro2 Macro
+'
+
+'
+'For i = 1 to
+'    Rows("12:15").Select
+'    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+'    Range("E12").Select
+'    Application.CutCopyMode = False
+'    Range("F11:I11").Select
+'    Selection.Copy
+'    Range("E12").Select
+'    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+'        False, Transpose:=True
+'    Range("A11:D11").Select
+'    Application.CutCopyMode = False
+'    Selection.Copy
+'    Range("A12").Select
+'    ActiveSheet.Paste
+'    Range("A13").Select
+'    ActiveSheet.Paste
+'    Range("A15").Select
+'    ActiveSheet.Paste
+'    Range("A14").Select
+'   ActiveSheet.Paste
+'End Sub
